@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 19:30:56 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/16 03:09:16 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/16 16:41:25 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_ph
 	pthread_mutex_t	forks[MAX_PHILOS];
 	pthread_mutex_t	printing;
 	long long				start_time;
-	int							is_dead;
+	int							someone_is_dead;
 }								t_ph;
 
 int	ft_atoi(const char *str);

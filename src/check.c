@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 03:06:02 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/16 16:24:21 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/16 16:41:25 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	death_observer(t_ph *ph)
 {
 	int	i;
 
-	while (!(ph->is_dead))
+	while (!(ph->someone_is_dead))
 	{
 		i = 0;
 		while (i < ph->num_of_philos)
@@ -41,12 +41,12 @@ void	death_observer(t_ph *ph)
 			if (get_time_ms() - ph->philos[i].time_last_eat > ph->time_to_die)
 			{
 				ph_print_log(ph, i, "died");
-				ph->is_dead = FT_TRUE;
+				ph->someone_is_dead = FT_TRUE;
 				break ;
 			}
 			i++;
 		}
-		// if (ph->is_dead == FT_TRUE)
+		// if (ph->someone_is_dead == FT_TRUE)
 		// 	break ;
 		if (ph->num_of_eat != 0 && complete_eating(ph))
 			break ;

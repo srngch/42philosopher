@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 16:00:19 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/16 16:23:40 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/16 16:46:22 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ph_print_log(t_ph *ph, int philo_id, char *str)
 
 	pthread_mutex_lock(&ph->printing);
 	time = get_time_ms() - ph->start_time;
-	printf("%llims %d %s\n", time, philo_id + 1, str);
+	printf("%lli %d %s\n", time, philo_id + 1, str);
 	pthread_mutex_unlock(&ph->printing);
 }
 
@@ -38,7 +38,7 @@ void	ph_usleep(t_ph *ph, int time)
 	long long now;
 
 	start = get_time_ms();
-	while (!(ph->is_dead))
+	while (!(ph->someone_is_dead))
 	{
 		now = get_time_ms();
 		if (now - start >= time)

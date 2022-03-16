@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 14:45:36 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/14 16:47:41 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/16 17:00:48 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static int	init_args(t_ph *ph, char **argv)
 	ph->time_to_eat = ft_atoi(argv[3]);
 	ph->time_to_sleep = ft_atoi(argv[4]);
 	ph->num_of_eat = 0;
+	ph->someone_is_dead = FT_FALSE;
 	if (argv[5] != NULL)
 		ph->num_of_eat = ft_atoi(argv[5]);
 	if (!validate_ph(ph))

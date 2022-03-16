@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 15:18:46 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/16 03:09:22 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/16 17:00:51 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	philo_eating(t_ph *ph, t_philo *philo)
 {
-	if (ph->is_dead)
+	if (ph->someone_is_dead)
 		return ;
 	if (philo->time_last_eat + ph->time_to_eat < \
 	philo->time_last_eat + ph->time_to_die)
-		ph_usleep(ph, 10);
+		usleep(ph->time_to_eat);
 	pthread_mutex_lock(&ph->forks[philo->id_left_fork]);
-	ph_print_log(ph, philo->id, "has taken a L fork");
+	ph_print_log(ph, philo->id, "has taken a fork");
 	pthread_mutex_lock(&ph->forks[philo->id_right_fork]);
-	ph_print_log(ph, philo->id, "has taken a R fork");
+	ph_print_log(ph, philo->id, "has taken a fork");
 	ph_print_log(ph, philo->id, "is eating");
 	philo->time_last_eat = get_time_ms();
 	philo->eat_count++;
@@ -33,7 +33,7 @@ void	philo_eating(t_ph *ph, t_philo *philo)
 
 void	philo_sleeping(t_ph *ph, t_philo *philo)
 {
-	if (ph->is_dead)
+	if (ph->someone_is_dead)
 		return ;
 	ph_print_log(ph, philo->id, "is sleeping");
 	ph_usleep(ph, philo->ph->time_to_sleep);
@@ -41,7 +41,7 @@ void	philo_sleeping(t_ph *ph, t_philo *philo)
 
 void	philo_thinking(t_ph *ph, t_philo *philo)
 {
-	if (ph->is_dead)
+	if (ph->someone_is_dead)
 		return ;
 	ph_print_log(ph, philo->id, "is thinking");
 }
@@ -52,18 +52,15 @@ void	*philo_routine(void *philo_arg)
 
 	philo = (t_philo *)philo_arg;
 	if (philo->id % 2)
-		usleep(5000);
-	while (!((philo->ph)->is_dead))
+		usleep(philo->ph->time_to_eat);
+	while (!((philo->ph)->someone_is_dead))
 	{
 		philo_eating(philo->ph, philo);
-		if (philo->ph->is_dead ||
+		if (philo->ph->someone_is_dead ||
 		(philo->ph->num_of_eat != 0 && complete_eating(philo->ph)))
 			break ;
 		philo_sleeping(philo->ph, philo);
 		philo_thinking(philo->ph, philo);
-		// ph_print_log(philo->ph, philo->id, "is sleeping");
-		// ph_usleep(philo->ph, philo->ph->time_to_sleep);
-		// ph_print_log(philo->ph, philo->id, "is thinking");
 	}
 	return ((void *)0);
 }
@@ -90,7 +87,6 @@ int	start_dinner(t_ph *ph)
 	i = 0;
 	philos = ph->philos;
 	ph->start_time = get_time_ms();
-	ph->is_dead = FT_FALSE;
 	while (i < ph->num_of_philos)
 	{
 		if (pthread_create(&(philos[i].thread), NULL, philo_routine, &(philos[i])))
