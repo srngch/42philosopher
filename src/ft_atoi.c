@@ -6,20 +6,15 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 11:56:54 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/02/28 19:50:19 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/16 20:18:57 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "philosophers.h"
 
 static int	ft_isspace(int c)
 {
 	if (c == ' ' || (9 <= c && c <= 13))
-		return (1);
-	return (0);
-}
-
-static int	ft_isdigit(int c)
-{
-	if ('0' <= c && c <= '9')
 		return (1);
 	return (0);
 }

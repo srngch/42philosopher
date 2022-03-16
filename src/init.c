@@ -6,20 +6,13 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 14:45:36 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/16 17:00:48 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/16 20:17:43 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 static int	init_mutex(t_ph *ph)
-{
-	if (pthread_mutex_init(&ph->printing, NULL) != 0)
-		return (FT_ERROR);
-	return (FT_SUCCESS);
-}
-
-static int	init_forks(t_ph *ph)
 {
 	int i;
 
@@ -30,6 +23,8 @@ static int	init_forks(t_ph *ph)
 			return (FT_ERROR);
 		i++;
 	}
+	if (pthread_mutex_init(&ph->printing, NULL) != 0)
+		return (FT_ERROR);
 	return (FT_SUCCESS);
 }
 
@@ -51,8 +46,29 @@ static int	init_philosophers(t_ph *ph)
 	return (FT_SUCCESS);
 }
 
+int	validate_args(char **argv)
+{
+	int i;
+	int	j;
+
+	i = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (!ft_isdigit(argv[i][j]))
+				return (FT_ERROR);
+			j++;
+		}
+		i++;
+	}
+	return (FT_SUCCESS);
+}
+
 static int	init_args(t_ph *ph, char **argv)
 {
+
 	ph->num_of_philos = ft_atoi(argv[1]);
 	ph->time_to_die = ft_atoi(argv[2]);
 	ph->time_to_eat = ft_atoi(argv[3]);
@@ -68,11 +84,11 @@ static int	init_args(t_ph *ph, char **argv)
 
 int	ph_init(t_ph *ph, char **argv)
 {
+	if (validate_args(argv) == FT_ERROR)
+		return (FT_ERROR);
 	if (init_args(ph, argv) == FT_ERROR)
 		return (FT_ERROR);
 	if (init_philosophers(ph) == FT_ERROR)
-		return (FT_ERROR);
-	if (init_forks(ph) == FT_ERROR)
 		return (FT_ERROR);
 	if (init_mutex(ph) == FT_ERROR)
 		return (FT_ERROR);

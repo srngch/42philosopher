@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 19:30:56 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/16 19:48:23 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/16 20:18:07 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_ph
 
 int	ft_atoi(const char *str);
 void  ft_putstr_fd(char *s, int fd);
+int	ft_isdigit(int c);
 
 /*
 ** init.c
