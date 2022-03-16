@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 03:06:02 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/16 03:06:06 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/16 16:24:21 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void	death_observer(t_ph *ph)
 		// 	break ;
 		if (ph->num_of_eat != 0 && complete_eating(ph))
 			break ;
+		ph_usleep(ph, 1000);
 	}
 }
