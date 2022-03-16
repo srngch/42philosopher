@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 03:06:02 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/16 17:17:28 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/16 19:55:35 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	complete_eating(t_ph *ph)
 			return (FT_FALSE);
 		i++;
 	}
-	printf("[TEST] complete_eating!\n");
 	return (FT_TRUE);
 }
 
