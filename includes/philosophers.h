@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 19:30:56 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/16 16:41:25 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/16 19:48:23 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,31 @@ typedef struct s_ph
 }								t_ph;
 
 int	ft_atoi(const char *str);
+void  ft_putstr_fd(char *s, int fd);
 
 /*
 ** init.c
 */
 int	ph_init(t_ph *ph, char **argv);
-void	ph_usleep(t_ph *ph, int time);
 
 /*
 ** dinner.c
 */
 int	start_dinner(t_ph *ph);
 void	end_dinner(t_ph *ph);
-void	death_observer(t_ph *ph);
+
+/*
+** action.c
+*/
+void	*philo_routine(void *philo_arg);
 
 /*
 ** util.c
 */
 long long	get_time_ms(void);
 void	ph_print_log(t_ph *ph, int philo_id, char *str);
+void	ph_print_error(char *str);
+void	ph_usleep(t_ph *ph, int time);
 
 /*
 ** validate.c
