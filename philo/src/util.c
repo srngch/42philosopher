@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 16:00:19 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/16 19:49:51 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/17 15:04:41 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ph_print_log(t_ph *ph, int philo_id, char *str)
 
 void	ph_print_error(char *str)
 {
-	ft_putstr_fd(str, 2);
+	ft_putstr_fd(str, STDERR_FILENO);
 }
 
 void	ph_usleep(t_ph *ph, int time)
