@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/05 11:56:54 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/16 20:18:57 by sarchoi          ###   ########seoul.kr  */
+/*   Created: 2022/03/17 14:36:56 by sarchoi           #+#    #+#             */
+/*   Updated: 2022/03/17 14:43:06 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static int	ft_isspace(int c)
+static int	is_space(int c)
 {
 	if (c == ' ' || (9 <= c && c <= 13))
 		return (1);
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
-	unsigned int	r;
-	int				sign;
+	long	r;
+	int		sign;
 
 	r = 0;
 	sign = 1;
-	while (ft_isspace(*str))
+	while (is_space(*str))
 		str++;
 	if (*str == '+' || *str == '-')
 	{
@@ -36,12 +36,7 @@ int	ft_atoi(const char *str)
 	}
 	while (ft_isdigit(*str))
 	{
-		if (((int)r * sign) > 469762049)
-			return (-1);
-		else if (((int)r * sign) < -469762049)
-			return (0);
-		else
-			r = r * 10 + (*str - '0');
+		r = r * 10 + (*str - '0');
 		str++;
 	}
 	return (r * sign);

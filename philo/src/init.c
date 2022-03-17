@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 14:45:36 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/16 20:17:43 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/17 14:43:14 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,38 @@ static int	init_philosophers(t_ph *ph)
 	return (FT_SUCCESS);
 }
 
+int	check_integer(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (i == 0 && (str[i] == '+' || str[i] == '-'))
+			i++;
+		if (!ft_isdigit(str[i]))
+			return (FT_FALSE);
+		i++;
+	}
+	return (FT_TRUE);
+}
+
+int	check_range(char *str)
+{
+	if (ft_atol(str) < PH_INT_MIN || ft_atol(str) > PH_INT_MAX)
+		return (FT_FALSE);
+	return (FT_TRUE);
+}
+
 int	validate_args(char **argv)
 {
 	int i;
-	int	j;
 
 	i = 1;
 	while (argv[i])
 	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if (!ft_isdigit(argv[i][j]))
-				return (FT_ERROR);
-			j++;
-		}
+		if (!check_integer(argv[i]) || !check_range(argv[i]))
+			return (FT_ERROR);
 		i++;
 	}
 	return (FT_SUCCESS);

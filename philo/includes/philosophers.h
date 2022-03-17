@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 19:30:56 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/16 20:18:07 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/17 14:43:00 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 
 # define	FT_USLEEP_TIME 10000
 # define	MAX_PHILOS 200
+
+# define PH_INT_MIN -2147483648
+# define PH_INT_MAX 2147483647
 
 struct s_ph;
 
@@ -62,6 +65,7 @@ typedef struct s_ph
 int	ft_atoi(const char *str);
 void  ft_putstr_fd(char *s, int fd);
 int	ft_isdigit(int c);
+long	ft_atol(const char *str);
 
 /*
 ** init.c
