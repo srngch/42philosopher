@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 14:45:36 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/17 14:43:14 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/20 01:43:15 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	init_mutex(t_ph *ph)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < ph->num_of_philos)
@@ -30,7 +30,7 @@ static int	init_mutex(t_ph *ph)
 
 static int	init_philosophers(t_ph *ph)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < ph->num_of_philos)
@@ -46,32 +46,9 @@ static int	init_philosophers(t_ph *ph)
 	return (FT_SUCCESS);
 }
 
-int	check_integer(char *str)
+static int	validate_args(char **argv)
 {
 	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (i == 0 && (str[i] == '+' || str[i] == '-'))
-			i++;
-		if (!ft_isdigit(str[i]))
-			return (FT_FALSE);
-		i++;
-	}
-	return (FT_TRUE);
-}
-
-int	check_range(char *str)
-{
-	if (ft_atol(str) < PH_INT_MIN || ft_atol(str) > PH_INT_MAX)
-		return (FT_FALSE);
-	return (FT_TRUE);
-}
-
-int	validate_args(char **argv)
-{
-	int i;
 
 	i = 1;
 	while (argv[i])
@@ -85,7 +62,6 @@ int	validate_args(char **argv)
 
 static int	init_args(t_ph *ph, char **argv)
 {
-
 	ph->num_of_philos = ft_atoi(argv[1]);
 	ph->time_to_die = ft_atoi(argv[2]);
 	ph->time_to_eat = ft_atoi(argv[3]);

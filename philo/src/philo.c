@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   action.c                                           :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:11:55 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/16 19:35:42 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/20 01:42:04 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	*philo_routine(void *philo_arg)
 	while (!((philo->ph)->someone_is_dead))
 	{
 		philo_eating(philo->ph, philo);
-		if (philo->ph->someone_is_dead ||
-		(philo->ph->num_of_eat != 0 && complete_eating(philo->ph)))
+		if (philo->ph->someone_is_dead
+			|| (philo->ph->num_of_eat != 0 && check_eating_done(philo->ph)))
 			break ;
 		philo_sleeping(philo->ph, philo);
 		philo_thinking(philo->ph, philo);

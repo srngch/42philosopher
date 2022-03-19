@@ -6,16 +6,16 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 16:00:19 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/17 15:04:41 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/20 01:41:21 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philosophers.h"
+#include "philosophers.h"
 
 long long	get_time_ms(void)
 {
-	struct timeval now;
-	long long time;
+	struct timeval	now;
+	long long		time;
 
 	gettimeofday(&now, NULL);
 	time = (now.tv_sec * 1000) + (now.tv_usec / 1000);
@@ -24,7 +24,7 @@ long long	get_time_ms(void)
 
 void	ph_print_log(t_ph *ph, int philo_id, char *str)
 {
-	long long time;
+	long long	time;
 
 	pthread_mutex_lock(&ph->printing);
 	time = get_time_ms() - ph->start_time;
@@ -32,15 +32,25 @@ void	ph_print_log(t_ph *ph, int philo_id, char *str)
 	pthread_mutex_unlock(&ph->printing);
 }
 
-void	ph_print_error(char *str)
+static int	ft_strlen(const char *str)
 {
-	ft_putstr_fd(str, STDERR_FILENO);
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+static void	ft_putstr_fd(char *s, int fd)
+{
+	write(fd, s, ft_strlen(s));
 }
 
 void	ph_usleep(t_ph *ph, int time)
 {
-	long long start;
-	long long now;
+	long long	start;
+	long long	now;
 
 	start = get_time_ms();
 	while (!(ph->someone_is_dead))
