@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 16:00:19 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/20 01:41:21 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/21 15:37:15 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,6 @@ void	ph_print_log(t_ph *ph, int philo_id, char *str)
 	pthread_mutex_unlock(&ph->printing);
 }
 
-static int	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-static void	ft_putstr_fd(char *s, int fd)
-{
-	write(fd, s, ft_strlen(s));
-}
-
 void	ph_usleep(t_ph *ph, int time)
 {
 	long long	start;
@@ -60,4 +45,19 @@ void	ph_usleep(t_ph *ph, int time)
 			break ;
 		usleep(1000);
 	}
+}
+
+static int	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	write(fd, s, ft_strlen(s));
 }

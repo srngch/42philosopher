@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 19:30:56 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/20 01:40:26 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/21 15:45:24 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_ph
 	int							time_to_sleep;
 	int							num_of_eat;
 	t_philo						philos[MAX_PHILOS];
-	pthread_mutex_t		[MAX_PHILOS];
+	pthread_mutex_t				forks[MAX_PHILOS];
 	pthread_mutex_t				printing;
 	long long					start_time;
 	int							someone_is_dead;
@@ -78,10 +78,12 @@ void			*philo_routine(void *philo_arg);
 long long		get_time_ms(void);
 void			ph_print_log(t_ph *ph, int philo_id, char *str);
 void			ph_usleep(t_ph *ph, int time);
+void			ft_putstr_fd(char *s, int fd);
 
 /*
 ** util2.c
 */
+int				ft_isdigit(int c);
 int				ft_atoi(const char *str);
 long			ft_atol(const char *str);
 
