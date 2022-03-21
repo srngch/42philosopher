@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 16:00:19 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/21 15:37:15 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/21 16:54:36 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	ph_print_log(t_ph *ph, int philo_id, char *str)
 {
 	long long	time;
 
+	if (ph->someone_is_dead)
+		return ;
 	pthread_mutex_lock(&ph->printing);
 	time = get_time_ms() - ph->start_time;
 	printf("%lli %d %s\n", time, philo_id + 1, str);
