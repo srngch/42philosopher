@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:11:55 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/20 01:42:04 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/21 19:09:13 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	philo_eating(t_ph *ph, t_philo *philo)
 		usleep(ph->time_to_eat);
 	pthread_mutex_lock(&ph->forks[philo->id_left_fork]);
 	ph_print_log(ph, philo->id, "has taken a fork");
+	if (ph->someone_is_dead)
+		return ;
 	pthread_mutex_lock(&ph->forks[philo->id_right_fork]);
 	ph_print_log(ph, philo->id, "has taken a fork");
 	ph_print_log(ph, philo->id, "is eating");
