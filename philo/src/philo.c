@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:11:55 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/21 19:09:13 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/21 19:23:14 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	*philo_routine(void *philo_arg)
 	philo = (t_philo *)philo_arg;
 	if (philo->id % 2)
 		usleep(philo->ph->time_to_eat);
-	while (!((philo->ph)->someone_is_dead))
+	while (!(philo->ph->someone_is_dead))
 	{
 		philo_eating(philo->ph, philo);
 		if (philo->ph->someone_is_dead

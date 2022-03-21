@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 19:36:29 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/20 01:44:22 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/21 19:23:40 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	start_dinner(t_ph *ph)
 	i = 0;
 	philos = ph->philos;
 	ph->start_time = get_time_ms();
-	while (i < ph->num_of_philos)
+	while (i < ph->num_of_philos && !(ph->someone_is_dead))
 	{
 		if (pthread_create(&(philos[i].thread), NULL, \
 		philo_routine, &(philos[i])))
