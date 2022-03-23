@@ -6,7 +6,7 @@
 /*   By: sarchoi <sarchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 16:00:19 by sarchoi           #+#    #+#             */
-/*   Updated: 2022/03/21 16:54:36 by sarchoi          ###   ########seoul.kr  */
+/*   Updated: 2022/03/23 16:41:17 by sarchoi          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ph_usleep(t_ph *ph, int time)
 		now = get_time_ms();
 		if (now - start >= time)
 			break ;
-		usleep(1000);
+		usleep(100);
 	}
 }
 
